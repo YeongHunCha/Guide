@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { FormsModule } from '@angular/forms'
+
 
 import { UsersService } from './services/users.service';
 
@@ -11,14 +13,17 @@ import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
 import { UsersComponent } from './components/users/users.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent
+    UsersComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'guide'),
     AngularFirestoreModule
   ],

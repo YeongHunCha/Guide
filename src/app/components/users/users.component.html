@@ -1,9 +1,10 @@
 <div *ngIf="users?.length > 0; else noUsers">
   <ul *ngFor="let user of users" class="collection">
     <li class="collection-item">
+      <p>{{user.id}}</p>
       <img src="{{user.profilePhoto}}" alt="" style="height:100px">
-      <h2>{{user.name}}</h2> : {{user.email}}
-      <h4>Travel Spot : {{user.spot}}</h4>
+      <h5>{{user.name}}</h5> : {{user.email}}
+      <h5>Travel Spot : {{user.spot}}</h5>
     </li>
   </ul>
 </div>
