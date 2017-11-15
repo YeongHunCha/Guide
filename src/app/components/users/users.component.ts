@@ -9,7 +9,8 @@ import { User } from '../../models/User';
 })
 export class UsersComponent implements OnInit {
   users: User[];
-  user:User;
+  editState: boolean = false;
+  userToEdit: User;
   constructor(private userService:UsersService) { }
   
 
@@ -20,8 +21,23 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(event, user){
+    this.clearState();
     this.userService.deleteUser(user);
+  }
 
+  updateUser(user:User){
+    this.clearState();
+    this.userService.updateUser(user);
+  }
+
+  editUser(event, user){
+    this.editState = true;
+    this.userToEdit = user;
+  }
+
+  clearState(){
+    this.editState = false;
+    this.userToEdit = null;
   }
 
 }

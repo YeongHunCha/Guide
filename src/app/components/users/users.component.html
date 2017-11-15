@@ -1,10 +1,37 @@
 <div *ngIf="users?.length > 0; else noUsers">
   <ul *ngFor="let user of users" class="collection">
-    <li class="collection-item" (dblclick)="deleteUser($event, user)">
+    <li class="collection-item">
       <p>{{user.id}}</p>
       <img src="{{user.profilePhoto}}" alt="" style="height:100px">
       <h5>{{user.name}}</h5> : {{user.email}}
       <h5>Travel Spot : {{user.spot}}</h5>
+      
+
+      <div *ngIf="editState && userToEdit.id == user.id">
+        <form (ngSubmit)="updateUser(user)">
+            <div class="row">
+                <div class="input-field col s4">
+                  <input type="text" placeholder="Add Name" [(ngModel)]=user.name name=name>
+                </div>
+        
+                <div class="input-field col s4">
+                    <input type="text" placeholder="Add Email" [(ngModel)]=user.email name=email>
+                </div>
+        
+                <div class="input-field col s4">
+                    <input type="text" placeholder="Add Spot" [(ngModel)]=user.spot name=spot>
+                </div>
+        
+              </div>
+              <input type="submit" value="Update" class="btn Orange">
+              <button class="btn red" (click)="deleteUser($event, user)">Delete User</button>
+        </form>
+      </div>
+      <a href="#" class="secondary-content">
+          <i class="fa fa-pencil" (click)="editUser($event, user)"></i>
+          <i *ngIf="editState && userToEdit.id == user.id" class="fa fa-compress" (click)="clearState()"></i>
+        </a>
+
     </li>
   </ul>
 </div>
