@@ -1,6 +1,6 @@
 <div *ngIf="users?.length > 0; else noUsers">
   <ul *ngFor="let user of users" class="collection">
-    <li class="collection-item">
+    <li class="collection-item" (dblclick)="deleteUser($event, user)">
       <p>{{user.id}}</p>
       <img src="{{user.profilePhoto}}" alt="" style="height:100px">
       <h5>{{user.name}}</h5> : {{user.email}}

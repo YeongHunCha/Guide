@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UsersService {
+  userDoc:AngularFirestoreDocument<User>;
   usersCollection:AngularFirestoreCollection<User>;
   users: Observable<User[]>;
   constructor(private afs:AngularFirestore) {
@@ -24,8 +25,13 @@ export class UsersService {
     return this.users;
   }
 
-  addUser(user){
+  addUser(user:User){
     return this.usersCollection.add(user);
+  }
+
+  deleteUser(user:User){
+    this.userDoc = this.afs.doc(`Users/${user.id}`);
+    this.userDoc.delete();
   }
 
 }
