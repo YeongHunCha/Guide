@@ -1,0 +1,48 @@
+<ng-container *ngIf="(authService.user | async) || {} as user">
+  <form [formGroup]="signupForm" *ngIf="!user.uid" (ngSubmit)="signup()">
+      
+    <h3>New User Signup</h3>
+  
+    <label for="email">Email</label>
+    <input type="email" formControlName="email">
+    
+    <div *ngIf="email.invalid && email.dirty">
+        이메일 형식을 지켜주세요.
+    </div>
+  
+    <label for="password">Password</label>
+    <input type="password" formControlName="password" required>
+  
+    <div *ngIf="password.invalid && password.touched" >
+      비밀번호는 최소 6자리의 알파벳과 숫자 조합입니다.
+    </div>
+  
+    <div *ngIf="signupForm.valid" >가입 가능한 형식입니다.</div>
+  
+    <button type="submit" [disabled]="!signupForm.valid">Submit</button>
+
+  </form>
+      
+      
+  <form [formGroup]="detailForm" *ngIf="user.uid && !user.spot" (ngSubmit)="setDetail(user)">
+    
+    <h3>Set Detail</h3>
+    <label for="name">name</label>
+    <input type="text" formControlName="name">
+
+    <label for="photoUrl">photoUrl</label>
+    <input type="text" formControlName="photoUrl">
+
+    <label for="spot">Spot</label>
+    <input type="text" formControlName="spot">
+
+    <button type="submit" [disabled]="!detailForm.valid">Submit</button>
+    
+  </form>
+
+  <p *ngIf="user.spot">
+      <a class="btn" (click)="logout()">logout</a>
+      <app-users></app-users>
+  </p>
+    
+</ng-container>

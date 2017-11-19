@@ -1,7 +1,7 @@
-export interface User {
-    id?:string;
-    name?:string;
-    email?:string;
-    spot?:string;
-    profilePhoto?:string;
-  }
+export interface User { 
+  uid:string;
+  email:string;
+  name?:string;
+  spot?:string;
+  photoUrl?:string;
+}

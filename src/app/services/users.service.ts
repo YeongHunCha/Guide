@@ -9,13 +9,11 @@ export class UsersService {
   usersCollection:AngularFirestoreCollection<User>;
   users: Observable<User[]>;
   constructor(private afs:AngularFirestore) {
-    // this.users = this.afs.collection('Users').valueChanges();
-    this.usersCollection = this.afs.collection('Users');
+    this.usersCollection = this.afs.collection('users');
 
     this.users = this.usersCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as User;
-        data.id = a.payload.doc.id;
         return data;
       });
     });
@@ -25,18 +23,18 @@ export class UsersService {
     return this.users;
   }
 
-  addUser(user:User){
-    return this.usersCollection.add(user);
-  }
-
-  deleteUser(user:User){
-    this.userDoc = this.afs.doc(`Users/${user.id}`);
-    this.userDoc.delete();
-  }
-
-  updateUser(user:User){
-    this.userDoc = this.afs.doc(`Users/${user.id}`);
-    this.userDoc.update(user);
-  }
+  // addUser(user:User){
+  //   return this.usersCollection.add(user);
+  // }
+  // 
+  // deleteUser(user:User){
+  //   this.userDoc = this.afs.doc(`Users/${user.id}`);
+  //   this.userDoc.delete();
+  // }
+  // 
+  // updateUser(user:User){
+  //   this.userDoc = this.afs.doc(`Users/${user.id}`);
+  //   this.userDoc.update(user);
+  // }
 
 }
