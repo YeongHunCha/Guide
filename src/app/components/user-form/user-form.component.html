@@ -1,48 +1,75 @@
 <ng-container *ngIf="(authService.user | async) || {} as user">
-  <form [formGroup]="signupForm" *ngIf="!user.uid" (ngSubmit)="signup()">
-      
-    <h3>New User Signup</h3>
   
-    <label for="email">Email</label>
-    <input type="email" formControlName="email">
+      
     
-    <div *ngIf="email.invalid && email.dirty">
-        이메일 형식을 지켜주세요.
+    <div class="container">
+      <h5>New User Signup</h5>
+      <div class="profile--open">
+        <div class="profile__form">
+          <div class="profile__fields">
+
+
+            <form [formGroup]="signupForm" *ngIf="!user.uid" (ngSubmit)="signup()">
+
+              <div class="field">
+                <label for="email" class="label">Email</label>
+                <input type="email" formControlName="email" class="input">
+                      
+                <div *ngIf="email.invalid && email.dirty">
+                  이메일 형식을 지켜주세요.
+                </div>
+              </div>
+              <div class="field">
+                <label for="password" class="label">Password</label>
+                <input type="password" formControlName="password" class="input" required>
+                  
+                <div *ngIf="password.invalid && password.touched" >
+                  비밀번호는 최소 6자리의 알파벳과 숫자 조합입니다.
+                </div>
+              </div>
+              <div *ngIf="signupForm.valid" >가입 가능한 형식입니다.</div>
+              <div class="profile__footer">
+                <button type="submit" [disabled]="!signupForm.valid" class="btn">Submit</button>
+              </div>
+
+            </form>
+            
+            <form [formGroup]="detailForm" *ngIf="user.uid && !user.spot" (ngSubmit)="setDetail(user)">
+              
+              <h5>Set Detail</h5>
+              <div class="field">
+                <label for="name" class="label">name</label>
+                <input type="text" formControlName="name" class="input">
+              </div>
+              <div class="field">
+                <label for="photoUrl" class="label">photoUrl</label>
+                <input type="text" formControlName="photoUrl" class="input">
+              </div>
+              <div class="field">
+                <label for="spot" class="label">Spot</label>
+                <input type="text" formControlName="spot" class="input">
+              </div>
+              <button type="submit" [disabled]="!detailForm.valid" class="btn">Submit</button>
+                
+            </form>
+
+            <div *ngIf="user.name">
+              <p>가입이 완료되었습니다.</p>
+              <p>확인 버튼 클릭 시 메인 페이지로 이동합니다.</p>
+              <a href="" class="button">확인</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
+      
+    
   
-    <label for="password">Password</label>
-    <input type="password" formControlName="password" required>
-  
-    <div *ngIf="password.invalid && password.touched" >
-      비밀번호는 최소 6자리의 알파벳과 숫자 조합입니다.
-    </div>
-  
-    <div *ngIf="signupForm.valid" >가입 가능한 형식입니다.</div>
-  
-    <button type="submit" [disabled]="!signupForm.valid">Submit</button>
-
-  </form>
       
       
-  <form [formGroup]="detailForm" *ngIf="user.uid && !user.spot" (ngSubmit)="setDetail(user)">
-    
-    <h3>Set Detail</h3>
-    <label for="name">name</label>
-    <input type="text" formControlName="name">
+  
 
-    <label for="photoUrl">photoUrl</label>
-    <input type="text" formControlName="photoUrl">
-
-    <label for="spot">Spot</label>
-    <input type="text" formControlName="spot">
-
-    <button type="submit" [disabled]="!detailForm.valid">Submit</button>
-    
-  </form>
-
-  <p *ngIf="user.spot">
-      <a class="btn" (click)="logout()">logout</a>
-      <app-users></app-users>
-  </p>
+  
     
 </ng-container>

@@ -1,15 +1,19 @@
-<div *ngIf="users?.length > 0; else noUsers">
-  <ul *ngFor="let user of users" class="collection">
-    <li class="collection-item">
-      <p>{{user.id}}</p>
-      <img src="{{user.photoUrl}}" alt="" style="height:100px">
-      <h5>{{user.name}}</h5> : {{user.email}}
-      <h5>Travel Spot : {{user.spot}}</h5>
-    </li>
-  </ul>
-</div>
+<ng-container *ngIf="(userService.user | async) || {} as user">
 
-<ng-template #noItems>
+  <!-- <div *ngIf="users?.length > 0; else noUsers"> -->
+    <ul *ngFor="let user of users" class="collection">
+      <li class="collection-item">
+        <p>{{user.id}}</p>
+        <img src="{{user.photoUrl}}" alt="" style="height:100px">
+        <h5>{{user.name}}</h5> : {{user.email}}
+        <h5>Travel Spot : {{user.spot}}</h5>
+      </li>
+    </ul>
+  <!-- </div> -->
+
+</ng-container>
+
+<ng-template #noUsers>
   <hr>
   <h5>There are no Users to list</h5>
 </ng-template>

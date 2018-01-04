@@ -1,0 +1,22 @@
+<div class="bbody">
+  <div class="container">
+      <div class="profile--open">
+        <div class="profile__form">
+          <div class="profile__fields">
+            <div class="field">
+              <input [(ngModel)]="email" type="text" id="fieldUser" class="input" required pattern=.*\S.* />
+              <label for="fieldUser" class="label">Username</label>
+            </div>
+            <div class="field">
+              <input [(ngModel)]="password" type="password" id="fieldPassword" class="input" required pattern=.*\S.* />
+              <label for="fieldPassword" class="label">Password</label>
+            </div>
+            <div class="profile__footer">
+              <button class="btn" (click)="signIn()" routerLink="/">Login</button>
+              <button class="btn" routerLink="/signUp">signUp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

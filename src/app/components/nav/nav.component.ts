@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service'
+import { CurrencyPipe } from '@angular/common/src/pipes/number_pipe';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-nav',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  currentEmail:String;
+  constructor(private afAuth:AngularFireAuth) {
+    this.afAuth.authState.subscribe( user=> {
+      if(user) {
+        this.currentEmail = user.email;
+        console.log("logined! email : "+this.currentEmail);
+      } else {
+        this.currentEmail = null;
+      }
+      
+    })
+   }
 
   ngOnInit() {
+    
+  }
+
+  logout(){
+    return this.afAuth.auth.signOut();
   }
 
 }

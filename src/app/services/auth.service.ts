@@ -46,6 +46,11 @@ export class AuthService {
       .catch(error => this.handleError(error));
   }
 
+  emailLogin(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    .then(()=>console.log('success'))
+    .catch(error=>console.log(error));
+  }
   updateUser(user: User, data: any) {
     return this.afs.doc(`users/${user.uid}`).update(data);
   }

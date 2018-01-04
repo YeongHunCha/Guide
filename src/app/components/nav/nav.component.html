@@ -2,9 +2,10 @@
   <div class="nav-wrapper">
     <a href="/" class="brand-logo">Guide</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="myInfo">내 정보</a></li>
-      <li><a href="/">가이드</a></li>
-      <li><a href="login">로그인</a></li>
+      <li><a routerLink="/">가이드 리스트</a></li>
+      <li *ngIf = "currentEmail"><a routerLink="/myInfo">{{currentEmail}}</a></li>
+      <li *ngIf = "currentEmail"><a (click)="logout()" routerLink="/login">로그아웃</a></li>
+      <li *ngIf = "!currentEmail"><a routerLink="/login">로그인</a></li>
     </ul>
   </div>
 </nav>
