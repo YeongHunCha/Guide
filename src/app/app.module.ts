@@ -13,6 +13,7 @@ import { UsersComponent } from './components/users/users.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { MyInfoComponent } from './components/my-info/my-info.component';
 import { NavComponent } from './components/nav/nav.component';
+import { LoginComponent } from './components/login/login.component';
 
 //services
 import { UsersService } from './services/users.service';
@@ -20,7 +21,7 @@ import { AuthService } from './services/auth.service';
 
 //modules
 import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './components/login/login.component';
+
 
 @NgModule({
   declarations: [

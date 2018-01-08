@@ -49,7 +49,7 @@ export class AuthService {
   emailLogin(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
     .then(()=>console.log('success'))
-    .catch(error=>console.log(error));
+    .catch(error=>alert(error));
   }
   updateUser(user: User, data: any) {
     return this.afs.doc(`users/${user.uid}`).update(data);

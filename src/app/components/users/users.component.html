@@ -1,15 +1,32 @@
 <ng-container *ngIf="(userService.user | async) || {} as user">
-
   <!-- <div *ngIf="users?.length > 0; else noUsers"> -->
-    <ul *ngFor="let user of users" class="collection">
+    <!-- <ul *ngFor="let user of users" class="collection">
       <li class="collection-item">
         <p>{{user.id}}</p>
         <img src="{{user.photoUrl}}" alt="" style="height:100px">
         <h5>{{user.name}}</h5> : {{user.email}}
         <h5>Travel Spot : {{user.spot}}</h5>
       </li>
-    </ul>
+    </ul> -->
   <!-- </div> -->
+<div class="row">
+  <div class="card-container col s12 m4" *ngFor="let user of users |async">
+    <div class="card">
+      <div class="card-image waves-effect waves-block waves-light">
+        <img class="activator" src="{{user.photoUrl}}" onerror="this.src='http://www.tahahaber.com/upload/2017/10/08/blog-het-gebruik-van-image-placeholders-laurent-van-dessel-image-place-holder-s-064f5b38036ab826.jpg';">
+      </div>
+      <div class="card-content">
+        <span class="card-title activator grey-text text-darken-4">{{user.name}}<i class="material-icons right">more_vert</i></span>
+        <p>{{user.email}}</p>
+      </div>
+      <div class="card-reveal">
+        <span class="card-title grey-text text-darken-4">Travel Spot<i class="material-icons right">close</i></span>
+        <p>{{user.spot}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+  
 
 </ng-container>
 
