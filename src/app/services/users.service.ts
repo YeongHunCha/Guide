@@ -10,7 +10,7 @@ export class UsersService {
   users: Observable<User[]>;
   constructor(private afs:AngularFirestore) {
     this.usersCollection = this.afs.collection('users');
-
+    
     this.users = this.usersCollection.snapshotChanges().map(changes => {
       return changes.map(a => {
         const data = a.payload.doc.data() as User;
@@ -21,6 +21,10 @@ export class UsersService {
 
   getUsers(){
     return this.users;
+  }
+
+  getCurrentUser(path:String){
+    return this.userDoc = this.afs.doc('users/'+path);
   }
 
   // addUser(user:User){
