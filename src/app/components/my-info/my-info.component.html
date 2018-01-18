@@ -1,5 +1,42 @@
-<ul>
+<!-- <ul>
   <li>
     {{currentUserData | async |json}}
   </li>
-</ul>
+</ul> -->
+<div *ngIf="cud" class="guide-container">
+
+  <div *ngIf="!isEdit" class="show-guide-info">
+      <img class="guide-img" src="{{cud.pothoUrl}}" onerror="this.src='http://www.tahahaber.com/upload/2017/10/08/blog-het-gebruik-van-image-placeholders-laurent-van-dessel-image-place-holder-s-064f5b38036ab826.jpg';">
+      <div class="guide-info">
+        <h5>NAME : {{cud.name}}</h5>
+        <h5>EMAIL : {{cud.email}}</h5>
+        <h5>GUIDE SPOT : {{cud.spot}}</h5>
+    
+        <button class="btn" (click)="edit()">수정</button>
+      </div>
+  </div>
+
+  
+
+  <div *ngIf="isEdit" class="edit-guide-info">
+      
+          <h5>Set Detail {{cud.email}}</h5>
+          <div class="field">
+            <label for="name" class="label">name</label>
+            <input type="text" class="input" [(ngModel)]="cud.name">
+          </div>
+          <div class="field">
+            <label for="photoUrl" class="label">photoUrl</label>
+            <input type="text" class="input" [(ngModel)]="cud.photoUrl">
+          </div>
+          <div class="field">
+            <label for="spot" class="label">Spot</label>
+            <input type="text" class="input" [(ngModel)]="cud.spot">
+          </div>
+          <button class="btn" (click)="editCancel()">Cancel</button>
+          <button type="submit" class="btn" (click)="submit()">Submit</button>
+    
+  </div>
+
+</div>
+

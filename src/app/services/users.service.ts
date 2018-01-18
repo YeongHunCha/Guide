@@ -36,9 +36,9 @@ export class UsersService {
   //   this.userDoc.delete();
   // }
   // 
-  // updateUser(user:User){
-  //   this.userDoc = this.afs.doc(`Users/${user.id}`);
-  //   this.userDoc.update(user);
-  // }
+  updateUser(user:User){
+    this.userDoc = this.afs.doc(`users/${user.uid}`);
+    this.userDoc.update(user);
+  }
 
 }

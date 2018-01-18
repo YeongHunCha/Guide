@@ -13,6 +13,8 @@ export class MyInfoComponent implements OnInit {
 
   currentUID:String;
   currentUserData:Observable<User>;
+  cud:User;
+  isEdit:boolean = false;
   constructor(private authService : AuthService, private userService: UsersService) {
     this.authService.getCurrent().subscribe( user=> {
       if(user) {
@@ -21,7 +23,8 @@ export class MyInfoComponent implements OnInit {
 
         this.currentUserData = this.userService.getCurrentUser(this.currentUID).valueChanges();
         this.currentUserData.subscribe( user => {
-          console.log(user.email);
+          console.log(user);
+          this.cud = user;
         })
         
       } else {
@@ -32,6 +35,20 @@ export class MyInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  edit() {
+    this.isEdit = true;
+  }
+
+  submit() {
+    this.userService.updateUser(this.cud);
+    alert("수정하였습니다.");
+    this.isEdit = false;
+  }
+
+  editCancel() {
+    this.isEdit = false;
   }
 
 }
